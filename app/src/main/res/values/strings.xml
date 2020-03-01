@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Viajabessa</string>
+    <string name="title_travel_list">Travel List</string>
+    <string name="title_travel_details">Travel Details</string>
 </resources>

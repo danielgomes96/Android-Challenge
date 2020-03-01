@@ -1,0 +1,26 @@
+apply plugin: 'com.android.dynamic-feature'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':app')
+    implementation project(':domain')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.github.kittinunf.result:result:$result_version"
+    implementation "com.github.kittinunf.result:result-coroutines:$result_version"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofit_coroutines_version"
+    implementation "androidx.fragment:fragment-ktx:$androidx_ktx_fragment_version"
+    implementation "androidx.constraintlayout:constraintlayout:$androidx_constraintlayout_version"
+}
