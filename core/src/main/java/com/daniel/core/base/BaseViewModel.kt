@@ -1,6 +1,5 @@
 package com.daniel.core.base
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -13,8 +12,7 @@ import kotlin.coroutines.CoroutineContext
 abstract class BaseViewModel : ViewModel(), CoroutineScope, KoinComponent {
     private val viewModelJob = SupervisorJob()
 
-    val loadingLiveData = MutableLiveData<Unit>()
-    fun loadingLv() : LiveData<Unit> = loadingLiveData
+    val loadingLiveData = MutableLiveData<Boolean>()
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO + viewModelJob

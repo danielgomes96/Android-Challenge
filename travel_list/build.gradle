@@ -18,6 +18,7 @@ dependencies {
     implementation project(':app')
     implementation project(':domain')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.cardview:cardview:$androidx_cardview_version"
     implementation "com.github.kittinunf.result:result:$result_version"
     implementation "com.github.kittinunf.result:result-coroutines:$result_version"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofit_coroutines_version"

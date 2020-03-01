@@ -1,19 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginTop="12dp"
+    app:cardCornerRadius="8dp">
 
-    <TextView
-        android:id="@+id/item_travel_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <ImageView
-        android:id="@+id/item_travel_image"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"/>
+        android:layout_height="wrap_content">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/item_travel_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="@string/item_travel_image_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_travel_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/item_travel_price_background"
+            android:elevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/item_travel_image"
+            app:layout_constraintTop_toBottomOf="@id/item_travel_image"
+            tools:text="R$ 2.100,00" />
+
+        <TextView
+            android:id="@+id/item_travel_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/item_travel_image"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="New York" />
+
+        <TextView
+            android:id="@+id/item_travel_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/item_travel_title"
+            app:layout_constraintTop_toBottomOf="@id/item_travel_title"
+            tools:text="Venha conhecer a capital da terra do Tio Sam por um preço inacreditável por 7 dias" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

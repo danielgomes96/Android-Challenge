@@ -15,13 +15,15 @@ class TravelListViewModel(
     val travelListLiveData = MutableLiveData<List<Travel>>()
 
     fun getTravelList() {
+        loadingLiveData.postValue(true)
         CoroutineScope(coroutineContext).launch {
             when (val travelList = getTravelListUseCase.execute()) {
                 is SuspendableResult.Success -> {
+                    loadingLiveData.postValue(false)
                     travelListLiveData.postValue(travelList.value)
                 }
                 is SuspendableResult.Failure -> {
-
+                    loadingLiveData.postValue(false)
                 }
             }
         }
