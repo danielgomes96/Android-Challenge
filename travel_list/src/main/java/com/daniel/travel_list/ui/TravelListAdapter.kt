@@ -13,7 +13,8 @@ import com.daniel.domain.entity.Travel
 import com.daniel.travel_list.R
 
 class TravelListAdapter(
-    private val context: Context
+    private val context: Context,
+    private val clickItem:(Travel) -> Unit
 ): RecyclerView.Adapter<TravelListAdapter.Holder>() {
 
     companion object {
@@ -38,7 +39,7 @@ class TravelListAdapter(
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(travelsList[position], context)
+        holder.bind(travelsList[position], context, clickItem)
     }
 
     inner class Holder(view: View): RecyclerView.ViewHolder(view) {
@@ -47,10 +48,14 @@ class TravelListAdapter(
         private val tvDescription: TextView = view.findViewById(R.id.item_travel_description)
         private val imImage: ImageView = view.findViewById(R.id.item_travel_image)
 
-        fun bind(travel: Travel, context: Context) {
+        fun bind(travel: Travel, context: Context, clickItem: (Travel) -> Unit) {
             tvTitle.text = travel.title
             tvPrice.text = travel.price?.convertToCurrency(CURRENCY_CODE)
             tvDescription.text = travel.description
+
+            itemView.setOnClickListener {
+                clickItem(travel)
+            }
 
             travel.imageUrl?.let { imageUrl ->
                 imImage.renderUrl(context, imageUrl)

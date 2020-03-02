@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/activity_travel_details_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:contentDescription="@string/travel_details_image_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_travel_details_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/activity_travel_details_image"
+        tools:text="New York"/>
+
+    <TextView
+        android:id="@+id/activity_travel_details_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/item_travel_price_background"
+        android:elevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/activity_travel_details_image"
+        app:layout_constraintTop_toBottomOf="@id/activity_travel_details_image"
+        tools:text="R$ 2.100,00"
+        tools:ignore="UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/activity_travel_details_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/activity_travel_details_title"
+        tools:text="Venha conhecer a cidade impecavel de nova york bla bla bla bla bla"/>
+
+    <Button
+        android:id="@+id/activity_travel_details_btn_buy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_buy_text"
+        android:textColor="@color/white"
+        android:background="@color/purple_heart"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

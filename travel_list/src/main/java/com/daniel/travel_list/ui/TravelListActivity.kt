@@ -1,5 +1,6 @@
 package com.daniel.travel_list.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,10 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 
 class TravelListActivity : AppCompatActivity() {
+
+    companion object {
+        const val INTENT_KEY_TRAVEL = "KEY_TRAVEL"
+    }
 
     private val travelListViewModel by viewModel<TravelListViewModel>()
     private lateinit var travelsAdapter: TravelListAdapter
@@ -47,13 +52,19 @@ class TravelListActivity : AppCompatActivity() {
     }
 
     private fun setupRecycler() {
-        travelsAdapter = TravelListAdapter(this)
+        travelsAdapter = TravelListAdapter(this, ::clickItem)
         rvTravelList.adapter = travelsAdapter
         rvTravelList.layoutManager = LinearLayoutManager(
             this,
             LinearLayoutManager.VERTICAL,
             false
         )
+    }
+
+    private fun clickItem(travel: Travel) {
+        val intent = Intent().setClassName(this, "com.daniel.travel_details.TravelDetailsActivity")
+        intent.putExtra(INTENT_KEY_TRAVEL, travel)
+        startActivity(intent)
     }
 
     private fun dismissLoading() {

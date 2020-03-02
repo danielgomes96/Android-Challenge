@@ -13,5 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val intent = Intent().setClassName(this, "com.daniel.travel_list.ui.TravelListActivity")
         startActivity(intent)
+        finish()
     }
 }
