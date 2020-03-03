@@ -8,7 +8,7 @@ object TravelMapper {
         val travels = ArrayList<Travel>()
         travelList.map {
             travels.add(
-                Travel(it.title, it.price, it.imageUrl, it.description)
+                Travel(it.title ?: "", it.price, it.imageUrl, it.description)
             )
         }
         return travels

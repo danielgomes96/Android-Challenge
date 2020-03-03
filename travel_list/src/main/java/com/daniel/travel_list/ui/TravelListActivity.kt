@@ -39,15 +39,9 @@ class TravelListActivity : AppCompatActivity() {
 
     private fun initObservers() {
         travelListViewModel.apply {
-            getTravelList()
-            loadingLiveData.observe(this@TravelListActivity, Observer { isLoading ->
-                if (isLoading) {
-                    showLoading()
-                } else {
-                    dismissLoading()
-                }
-            })
-            travelListLiveData.observe(this@TravelListActivity, Observer(::displayList))
+            showLoading()
+            fetchTravels()
+            travelsLiveData().observe(this@TravelListActivity, Observer(::displayList))
         }
     }
 
@@ -77,6 +71,7 @@ class TravelListActivity : AppCompatActivity() {
     }
 
     private fun displayList(travelList: List<Travel>) {
+        dismissLoading()
         travelsAdapter.setItems(travelList)
     }
 

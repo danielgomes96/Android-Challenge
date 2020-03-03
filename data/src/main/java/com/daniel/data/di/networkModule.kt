@@ -1,6 +1,9 @@
 package com.daniel.data.di
 
-import com.daniel.data.BuildConfig
+import android.util.Log
+import com.daniel.core.utils.DeviceUtils.getAndroidVersion
+import com.daniel.core.utils.DeviceUtils.getDeviceManufacturer
+import com.daniel.core.utils.DeviceUtils.getDeviceModel
 import com.daniel.data.TravelService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
@@ -12,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val BASE_URL = "https://private-8ac3e2-viajabessaapi5.apiary-mock.com/"
 
 val networkModule  = module {
-    factory {
+    single {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -20,13 +23,21 @@ val networkModule  = module {
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor(HttpLoggingInterceptor().apply {
-                        if (BuildConfig.DEBUG) level = HttpLoggingInterceptor.Level.BODY
+                       level = HttpLoggingInterceptor.Level.HEADERS
                     })
+                    .addInterceptor { chain ->
+                        val newRequest = chain.request().newBuilder()
+                            .addHeader("AndroidVersion", getAndroidVersion())
+                            .addHeader("DeviceManufacturer", getDeviceManufacturer())
+                            .addHeader("DeviceModel", getDeviceModel())
+                            .build()
+                        chain.proceed(newRequest)
+                    }
                     .build()
             )
             .build()
     }
-    single {
+    factory {
         get<Retrofit>().create(TravelService::class.java)
     }
 }

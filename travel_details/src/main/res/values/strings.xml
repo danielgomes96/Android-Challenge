@@ -2,4 +2,5 @@
 <resources>
     <string name="btn_buy_text">Comprar</string>
     <string name="travel_details_image_description">Imagem da viagem</string>
+    <string name="btn_buy_toast_message">Pacote de viagem comprado com sucesso!</string>
 </resources>

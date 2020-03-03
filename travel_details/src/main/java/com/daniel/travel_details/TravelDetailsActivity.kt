@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.daniel.core.extension.bind
 import com.daniel.core.extension.convertToCurrency
 import com.daniel.core.extension.renderUrl
+import com.daniel.core.extension.toast
 import com.daniel.domain.entity.Travel
 
 class TravelDetailsActivity : AppCompatActivity() {
@@ -36,6 +37,9 @@ class TravelDetailsActivity : AppCompatActivity() {
         tvPrice.text = travel.price?.convertToCurrency("BRL")
         travel.imageUrl?.let { imageUrl ->
             imImage.renderUrl(this, imageUrl)
+        }
+        btnBuy.setOnClickListener {
+            toast(getString(R.string.btn_buy_toast_message))
         }
     }
 }
