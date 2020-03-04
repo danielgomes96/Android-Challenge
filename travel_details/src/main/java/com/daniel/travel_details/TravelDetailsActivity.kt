@@ -1,6 +1,7 @@
 package com.daniel.travel_details
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,6 +16,7 @@ class TravelDetailsActivity : AppCompatActivity() {
 
     companion object {
         const val INTENT_KEY_TRAVEL = "KEY_TRAVEL"
+        private const val CURRENCY_CODE = "BRL"
     }
 
     private val tvTitle by bind<TextView>(R.id.activity_travel_details_title)
@@ -26,20 +28,28 @@ class TravelDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_travel_details)
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val travel = intent.getSerializableExtra(INTENT_KEY_TRAVEL) as Travel
         setupDetails(travel)
     }
 
     private fun setupDetails(travel: Travel) {
+        supportActionBar?.title = travel.title
         tvTitle.text = travel.title
         tvDescription.text = travel.description
-        tvPrice.text = travel.price?.convertToCurrency("BRL")
+        tvPrice.text = travel.price?.convertToCurrency(CURRENCY_CODE)
         travel.imageUrl?.let { imageUrl ->
             imImage.renderUrl(this, imageUrl)
         }
         btnBuy.setOnClickListener {
             toast(getString(R.string.btn_buy_toast_message))
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
