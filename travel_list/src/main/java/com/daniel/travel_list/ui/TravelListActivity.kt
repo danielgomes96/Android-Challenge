@@ -1,6 +1,5 @@
 package com.daniel.travel_list.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
@@ -11,8 +10,10 @@ import com.daniel.core.extension.bind
 import com.daniel.core.extension.gone
 import com.daniel.core.extension.visible
 import com.daniel.domain.entity.Travel
+import com.daniel.navigator.Navigator
 import com.daniel.travel_list.R
 import com.daniel.travel_list.di.travelListModule
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
@@ -23,6 +24,7 @@ class TravelListActivity : AppCompatActivity() {
         const val INTENT_KEY_TRAVEL = "KEY_TRAVEL"
     }
 
+    private val navigator by inject<Navigator>()
     private val travelListViewModel by viewModel<TravelListViewModel>()
     private lateinit var travelsAdapter: TravelListAdapter
 
@@ -56,8 +58,8 @@ class TravelListActivity : AppCompatActivity() {
     }
 
     private fun clickItem(travel: Travel) {
-        val intent = Intent().setClassName(this, "com.daniel.travel_details.TravelDetailsActivity")
-        intent.putExtra(INTENT_KEY_TRAVEL, travel)
+        val intent = navigator.openTravelDetailsIntent()
+        intent?.putExtra(INTENT_KEY_TRAVEL, travel)
         startActivity(intent)
     }
 

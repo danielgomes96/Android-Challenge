@@ -4,6 +4,7 @@ import android.app.Application
 import com.daniel.data.di.networkModule
 import com.daniel.data.di.repositoryModule
 import com.daniel.domain.di.domainModule
+import com.daniel.navigator.di.navigatorModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -15,9 +16,10 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 listOf(
-                networkModule,
-                repositoryModule,
-                domainModule
+                    navigatorModule,
+                    networkModule,
+                    repositoryModule,
+                    domainModule
                 )
             )
         }
