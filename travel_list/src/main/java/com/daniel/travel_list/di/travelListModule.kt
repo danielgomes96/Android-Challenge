@@ -8,6 +8,7 @@ val travelListModule = module {
     viewModel {
         TravelListViewModel(
             get(),
+            get(),
             get()
         )
     }

@@ -1,10 +1,7 @@
 package com.daniel.domain.di
 
 import com.daniel.domain.repository.TravelsRepository
-import com.daniel.domain.usecase.FetchTravelsUseCase
-import com.daniel.domain.usecase.FetchTravelsUseCaseImpl
-import com.daniel.domain.usecase.GetTravelsUseCase
-import com.daniel.domain.usecase.GetTravelsUseCaseImpl
+import com.daniel.domain.usecase.*
 import org.koin.dsl.module
 
 val domainModule = module {
@@ -13,5 +10,8 @@ val domainModule = module {
     }
     factory {
         GetTravelsUseCaseImpl(get<TravelsRepository>()) as GetTravelsUseCase
+    }
+    factory {
+        HandleErrorUseCaseImpl(get<TravelsRepository>()) as HandleErrorUseCase
     }
 }

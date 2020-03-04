@@ -6,4 +6,5 @@ import com.daniel.domain.entity.Travel
 interface TravelsRepository {
     suspend fun fetchTravels()
     fun getTravelsFromDatabase(): LiveData<List<Travel>>
+    fun getErrorLiveData(): LiveData<Unit>
 }

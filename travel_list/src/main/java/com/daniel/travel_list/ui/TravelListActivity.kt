@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.daniel.core.extension.bind
 import com.daniel.core.extension.gone
+import com.daniel.core.extension.toast
 import com.daniel.core.extension.visible
 import com.daniel.domain.entity.Travel
 import com.daniel.navigator.Navigator
@@ -43,8 +44,13 @@ class TravelListActivity : AppCompatActivity() {
         travelListViewModel.apply {
             showLoading()
             fetchTravels()
+            errorLiveData().observe(this@TravelListActivity, Observer(::handleError))
             travelsLiveData().observe(this@TravelListActivity, Observer(::displayList))
         }
+    }
+
+    private fun handleError(unit: Unit?) {
+        toast("Erro de conexao")
     }
 
     private fun setupRecycler() {
