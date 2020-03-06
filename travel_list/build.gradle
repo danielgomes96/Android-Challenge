@@ -20,4 +20,6 @@ dependencies {
     implementation "androidx.cardview:cardview:$androidx_cardview_version"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofit_coroutines_version"
     implementation "androidx.fragment:fragment-ktx:$androidx_ktx_fragment_version"
+    testImplementation "io.mockk:mockk:1.9.3"
+    testImplementation 'junit:junit:4.12'
 }
